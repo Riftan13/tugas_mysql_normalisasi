@@ -1,0 +1,97 @@
+CREATE DATABASE toko_langgeng;
+USE toko_langgeng;
+
+CREATE TABLE tbl_data_toko (
+id_toko INT PRIMARY KEY AUTO_INCREMENT, 
+nama_toko VARCHAR(50), 
+alamat_toko VARCHAR(100), 
+no_telp VARCHAR(20), 
+statusnya ENUM ("aktif","non aktif"));
+SHOW COLUMNS FROM tbl_data_toko;
+
+CREATE TABLE tbl_jabatan (
+id_jabatan TINYINT PRIMARY KEY AUTO_INCREMENT, 
+nama_jabatan VARCHAR(30), 
+statusnya ENUM ("aktif","non aktif"));
+SHOW COLUMNS FROM tbl_jabatan;
+
+CREATE TABLE tbl_karyawan (
+id_karyawan INT PRIMARY KEY AUTO_INCREMENT, 
+id_jabatan TINYINT, 
+nik VARCHAR(20), 
+nama_karyawan VARCHAR(50), 
+kelamin ENUM("Pria", "Wanita"), 
+alamat_karyawan VARCHAR(100), 
+kontak_karyawan VARCHAR(14), 
+email_karyawan VARCHAR(30)UNIQUE,
+username VARCHAR (20),
+pass VARCHAR (20), 
+no_rek VARCHAR(30)UNIQUE,
+id_bank TINYINT, 
+statusnya ENUM ("aktif","non aktif"));
+SHOW COLUMNS FROM tbl_karyawan;
+
+CREATE TABLE tbl_pelanggan (
+id_pelanggan INT PRIMARY KEY, 
+nama_pelanggan VARCHAR(50), 
+kelamin ENUM("Pria", "Wanita"), 
+nik VARCHAR(20), 
+alamat VARCHAR(100), 
+no_telp VARCHAR(14), 
+poin INT, 
+statusnya ENUM ("aktif","non aktif"));
+SHOW COLUMNS FROM tbl_pelanggan;
+
+CREATE TABLE tbl_barang (
+id_barang INT PRIMARY KEY, 
+barcode VARCHAR(50), 
+nama_barang VARCHAR(100), 
+harga FLOAT(7,2), 
+stock INT, 
+id_satuan TINYINT,
+id_rak TINYINT, 
+statusnya ENUM ("aktif","non aktif"));
+DESCRIBE tbl_barang;
+
+
+CREATE TABLE tbl_transaksi (
+id_transaksi BIGINT PRIMARY KEY, 
+id_karyawan INT, 
+id_pelanggan INT, 
+id_barang INT, 
+jumlah INT, 
+waktu_transaksi TIMESTAMP);
+DESCRIBE tbl_transaksi;
+
+CREATE TABLE tbl_satuan(
+id_satuan TINYINT PRIMARY KEY AUTO_INCREMENT, 
+nama_satuan VARCHAR(20), 
+keterangan VARCHAR(100), 
+statusnya ENUM ("aktif","non aktif"));
+DESCRIBE tbl_satuan;
+
+CREATE TABLE tbl_rak (
+id_rak TINYINT PRIMARY KEY AUTO_INCREMENT, 
+nama_rak VARCHAR(20), 
+posisi_rak ENUM("Rak1", "Rak2", "Rak3","Rak4"), 
+statusnya ENUM ("aktif","non aktif"));
+SHOW COLUMNS FROM tbl_rak;
+
+
+CREATE TABLE tbl_bank (
+id_bank TINYINT,
+nama_bank VARCHAR (20),
+statusnya ENUM ("aktif","non aktif"));
+SHOW COLUMNS FROM tbl_bank;
+
+CREATE TABLE supplier (
+id_supplier TINYINT,
+nama_suplier VARCHAR(30),
+alamat VARCHAR(100),
+email VARCHAR(30)UNIQUE,
+no_telp VARCHAR(20),
+id_bank TINYINT,
+no_rek VARCHAR(30),
+statusnya ENUM ("aktif","non aktif"));
+
+SHOW TABLES FROM toko_langgeng;
